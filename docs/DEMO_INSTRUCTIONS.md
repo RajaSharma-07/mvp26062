@@ -1,5 +1,7 @@
 # Live Demo Flow (5 Minutes)
 
+> 📹 **Recorded Walkthrough Video:** [Watch on YouTube (https://www.youtube.com/watch?v=X2b3SjE2lsQ)](https://www.youtube.com/watch?v=X2b3SjE2lsQ)
+
 ## Setup (Before Demo)
 
 ```bash

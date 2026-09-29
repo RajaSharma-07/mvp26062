@@ -5,7 +5,7 @@
 > **Status: ✅ Production-Ready Architecture**
 
 🔗 **GitHub:** https://github.com/RajaSharma-07/mvp26062  
-📹 **Demo Video:** [Watch 5-Minute Live Demo (YouTube Link)](VIDEO_LINK_HERE) <!-- Replace VIDEO_LINK_HERE with your YouTube video URL -->  
+📹 **Demo Video:** [Watch 5-Minute Live Demo (YouTube)](https://www.youtube.com/watch?v=X2b3SjE2lsQ)  
 📊 **Test Results:** See [`docs/TEST_RESULTS.md`](docs/TEST_RESULTS.md)  
 🛡️ **Conflict Resolution:** See [`docs/CONFLICT_RESOLUTION.md`](docs/CONFLICT_RESOLUTION.md)  
 📡 **Offline-First Sync:** See [`docs/OFFLINE_SYNC.md`](docs/OFFLINE_SYNC.md)  
