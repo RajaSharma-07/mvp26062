@@ -9,7 +9,9 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
-    "seed": "tsx prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts",
+    "test": "tsx src/tests/sync.test.ts",
+    "test:sync": "tsx src/tests/sync.test.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.10.0",

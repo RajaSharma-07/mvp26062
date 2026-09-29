@@ -6,6 +6,8 @@
     "dev": "concurrently \"pnpm --filter api dev\" \"pnpm --filter web dev\"",
     "build": "pnpm --filter api build && pnpm --filter web build",
     "seed": "pnpm --filter api seed",
+    "test": "pnpm --filter api test",
+    "test:sync": "pnpm --filter api test:sync",
     "db:push": "pnpm --filter api db:push",
     "db:migrate": "pnpm --filter api db:migrate"
   },
