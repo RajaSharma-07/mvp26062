@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'leaflet/dist/leaflet.css';
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --polar-bg: #080E1A;
+    --polar-surface: #0F1A2E;
+    --polar-card: #152035;
+    --polar-border: #1E3050;
+    --polar-accent: #00D4FF;
+    --polar-amber: #F59E0B;
+    --polar-critical: #EF4444;
+    --polar-success: #10B981;
+    --polar-text: #E2E8F0;
+    --polar-text-dim: #94A3B8;
+  }
+
+  * {
+    border-color: var(--polar-border);
+    scrollbar-width: thin;
+    scrollbar-color: #1E3050 transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb {
+    background: #1E3050;
+    border-radius: 2px;
+  }
+
+  html {
+    background-color: var(--polar-bg);
+    color: var(--polar-text);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--polar-bg);
+    color: var(--polar-text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  code, kbd, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* ── Cards ─────────────────────────────────────────────────────────────── */
+  .polar-card {
+    @apply bg-polar-card/70 backdrop-blur-md border border-polar-border rounded-xl shadow-card;
+  }
+
+  .polar-card-hover {
+    @apply polar-card transition-all duration-200;
+  }
+
+  .polar-card-hover:hover {
+    @apply border-polar-accent/30 shadow-accent;
+    transform: translateY(-1px);
+  }
+
+  /* ── Glass ─────────────────────────────────────────────────────────────── */
+  .polar-glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.07] rounded-xl;
+  }
+
+  /* ── Buttons ───────────────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply bg-polar-accent text-polar-bg font-semibold px-4 py-2 rounded-lg
+           transition-all duration-150 hover:bg-polar-accent/90 hover:shadow-accent
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-polar-surface border border-polar-border text-polar-text font-medium px-4 py-2 rounded-lg
+           transition-all duration-150 hover:border-polar-accent/50 hover:bg-polar-card
+           active:scale-95;
+  }
+
+  .btn-danger {
+    @apply bg-polar-critical/10 border border-polar-critical/50 text-polar-critical font-semibold px-4 py-2 rounded-lg
+           transition-all duration-150 hover:bg-polar-critical hover:text-white
+           active:scale-95;
+  }
+
+  /* ── Status Pills ──────────────────────────────────────────────────────── */
+  .status-pill {
+    @apply text-xs font-medium px-2.5 py-0.5 rounded-full border;
+  }
+
+  /* ── Table ─────────────────────────────────────────────────────────────── */
+  .polar-table {
+    @apply w-full text-sm;
+  }
+  .polar-table th {
+    @apply text-left text-polar-text-dim font-medium px-4 py-3 border-b border-polar-border text-xs uppercase tracking-wider;
+  }
+  .polar-table td {
+    @apply px-4 py-3 border-b border-polar-border/50;
+  }
+  .polar-table tr:hover td {
+    @apply bg-polar-surface/50;
+  }
+
+  /* ── Input ─────────────────────────────────────────────────────────────── */
+  .polar-input {
+    @apply bg-polar-surface border border-polar-border rounded-lg px-3 py-2 text-polar-text text-sm
+           placeholder:text-polar-text-dim
+           focus:outline-none focus:border-polar-accent/60 focus:ring-1 focus:ring-polar-accent/30
+           transition-colors duration-150;
+  }
+
+  .polar-select {
+    @apply polar-input appearance-none cursor-pointer;
+  }
+
+  /* ── Skeleton ──────────────────────────────────────────────────────────── */
+  .skeleton {
+    @apply bg-polar-border/50 rounded animate-pulse;
+  }
+
+  /* ── Badge ─────────────────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-md;
+  }
+}
+
+@layer utilities {
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-polar-accent to-cyan-300 bg-clip-text text-transparent;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  }
+
+  .glow-critical {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+  }
+
+  .border-glow-accent {
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2), inset 0 0 10px rgba(0, 212, 255, 0.05);
+  }
+}

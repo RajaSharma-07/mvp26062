@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  password  String
+  role      String     @default("field_crew")
+  stationId String?
+  personnel Personnel?
+  createdAt DateTime   @default(now())
+}
+
+model Station {
+  id          String       @id @default(uuid())
+  name        String
+  lat         Float
+  lng         Float
+  expeditions Expedition[]
+  assets      Asset[]
+  incidents   Incident[]
+}
+
+model Expedition {
+  id         String      @id @default(uuid())
+  name       String
+  startDate  DateTime
+  endDate    DateTime?
+  status     String      @default("planning")
+  stationId  String
+  station    Station     @relation(fields: [stationId], references: [id])
+  assets     Asset[]
+  personnel  Personnel[]
+  incidents  Incident[]
+  createdAt  DateTime    @default(now())
+}
+
+model Asset {
+  id           String          @id @default(uuid())
+  name         String
+  category     String
+  qrCode       String          @unique
+  quantity     Float           @default(1)
+  unit         String          @default("units")
+  status       String          @default("warehouse")
+  location     String?
+  expeditionId String?
+  expedition   Expedition?     @relation(fields: [expeditionId], references: [id])
+  stationId    String?
+  station      Station?        @relation(fields: [stationId], references: [id])
+  movements    AssetMovement[]
+  lastScanAt   DateTime?
+  createdAt    DateTime        @default(now())
+}
+
+model AssetMovement {
+  id         String   @id @default(uuid())
+  assetId    String
+  asset      Asset    @relation(fields: [assetId], references: [id])
+  fromStatus String
+  toStatus   String
+  location   String?
+  scannedBy  String?
+  notes      String?
+  scannedAt  DateTime @default(now())
+}
+
+model Personnel {
+  id           String         @id @default(uuid())
+  userId       String         @unique
+  user         User           @relation(fields: [userId], references: [id])
+  expeditionId String?
+  expedition   Expedition?    @relation(fields: [expeditionId], references: [id])
+  role         String
+  status       String         @default("assigned")
+  location     String?
+  logs         PersonnelLog[]
+  updatedAt    DateTime       @updatedAt
+}
+
+model PersonnelLog {
+  id          String    @id @default(uuid())
+  personnelId String
+  personnel   Personnel @relation(fields: [personnelId], references: [id])
+  fromStatus  String
+  toStatus    String
+  location    String?
+  updatedBy   String?
+  loggedAt    DateTime  @default(now())
+}
+
+model Incident {
+  id           String    @id @default(uuid())
+  title        String
+  type         String
+  severity     String    @default("medium")
+  description  String?
+  stationId    String?
+  station      Station?  @relation(fields: [stationId], references: [id])
+  expeditionId String?
+  expedition   Expedition? @relation(fields: [expeditionId], references: [id])
+  reportedBy   String?
+  status       String    @default("open")
+  createdAt    DateTime  @default(now())
+  resolvedAt   DateTime?
+}
